@@ -3,7 +3,7 @@
 
 .todos-bg-container {
     background-color: #e1ffe2;
-    height: 100vh;
+    height: 120vh;
 }
 
 .todos-heading {
@@ -51,16 +51,25 @@
 
 .todo-user-input {
     background-color: white;
-    width: 100%;
     border-style: solid;
     border-width: 1px;
     border-color: #e4e7eb;
     border-radius: 10px;
-    margin-top: 10px;
-    padding: 15px;
+    margin: 25px 0px;
+    padding: 25px;
+}
+.edit-content{
+    min-width: 15vw;
+    padding-left: 10px;
+    color: rgb(21, 41, 255);
+    border-radius: 15px;
+    font-weight: bold;
+}
+.arrow-symbol{
+    font-size: 60px;
 }
 
-.add-todo-button, button {
+.add-todo-button,button {
     color: white;
     background-color: #3e68ff;
     font-family: "Roboto";
@@ -92,7 +101,7 @@
     height: 20px;
     margin-top: 12px;
     margin-right: 12px;
-    background-color: rgb(33, 255, 48);
+
 }
 
 .checkbox-label {
@@ -111,10 +120,13 @@
 
 .delete-icon-container {
     text-align: right;
-    width: 18%;
+    width: 20%;
 }
 
 .delete-icon {
+    padding: 15px;
+}
+.edit-icon{
     padding: 15px;
 }
 
@@ -122,11 +134,20 @@
     font-style: italic;
     text-decoration: line-through;
     font-weight: none;
+    text-decoration-thickness: 2px;
 }
-
 .note{
     font-family: "caveat";
     font-size: 20px;
     margin-left: 30px;
     font-weight: bold;
+}
+
+
+.button:active,.add-todo-button:active{
+    scale: 0.95;
+
+}
+button:focus{
+    outline: none;
 }
