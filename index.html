@@ -26,9 +26,14 @@
                     <h1 class="create-task-heading">
                         Create <span class="create-task-heading-subpart">Task</span>
                     </h1>
-                    <input type="text" id="todoUserInput" class="todo-user-input"
+                    <div class="d-flex flex-row">
+                        <input type="text" id="todoUserInput" class="todo-user-input form-control"
                         placeholder="What needs to be done?" />
-                    <button class="add-todo-button" id="addTodoButton" onclick="add()">Add</button>
+                        <p class="edit-content d-none" id="editIndicator">
+                            <span class="arrow-symbol">&larr;</span>
+                            Edit Here</p>
+                    </div>
+                    <button class="add-todo-button" id="addTodoButton">Add</button>
                     <h1 class="todo-items-heading">
                         My <span class="todo-items-heading-subpart">Tasks</span>
                     </h1>
