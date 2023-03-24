@@ -1,7 +1,8 @@
 let todoItemsContainer = document.getElementById("todoItemsContainer");
 let addTodoButton = document.getElementById("addTodoButton");
 let saveTodoButton = document.getElementById("saveTodoButton");
-
+let userInputElement = document.getElementById("todoUserInput");
+let editIndicator =  document.getElementById("editIndicator");
 function getTodoListFromLocalStorage() {
   let stringifiedTodoList = localStorage.getItem("todoList");
   let parsedTodoList = JSON.parse(stringifiedTodoList);
@@ -17,10 +18,18 @@ let todosCount = todoList.length;
 
 saveTodoButton.onclick = function() {
   localStorage.setItem("todoList", JSON.stringify(todoList));
+  saveTodoButton.textContent = "Saved";
+  saveTodoButton.style.backgroundColor = "#00e32a"
+  setTimeout(()=>{
+    saveTodoButton.textContent = "Save";
+    saveTodoButton.style.backgroundColor = "#3e68ff"
+  },1000)
+
 };
 
 function onAddTodo() {
-  let userInputElement = document.getElementById("todoUserInput");
+  editIndicator.classList.add("d-none");
+  
   let userInputValue = userInputElement.value;
 
   if (userInputValue === "") {
@@ -68,12 +77,12 @@ function onTodoStatusChange(checkboxId, labelId, todoId) {
   }
 
 }
-
+let deleteElementIndex;
 function onDeleteTodo(todoId) {
   let todoElement = document.getElementById(todoId);
   todoItemsContainer.removeChild(todoElement);
 
-  let deleteElementIndex = todoList.findIndex(function(eachTodo) {
+    deleteElementIndex = todoList.findIndex(function(eachTodo) {
     let eachTodoId = "todo" + eachTodo.uniqueNo;
     if (eachTodoId === todoId) {
       return true;
@@ -86,6 +95,7 @@ function onDeleteTodo(todoId) {
 }
 
 function createAndAppendTodo(todo) {
+
   let todoId = "todo" + todo.uniqueNo;
   let checkboxId = "checkbox" + todo.uniqueNo;
   let labelId = "label" + todo.uniqueNo;
@@ -128,12 +138,27 @@ function createAndAppendTodo(todo) {
   let deleteIcon = document.createElement("i");
   deleteIcon.classList.add("far", "fa-trash-alt", "delete-icon");
 
+  let editIcon = document.createElement("i");
+  editIcon.classList.add("far", "fa-edit","align-item-left","edit-icon" );
+
+
   deleteIcon.onclick = function () {
     onDeleteTodo(todoId);
   };
 
+  
+  editIcon.onclick = function () {
+    onDeleteTodo(todoId);
+    editIndicator.classList.remove("d-none");
+    userInputElement.value = labelElement.textContent;
+  };
+
+  deleteIconContainer.appendChild(editIcon);
   deleteIconContainer.appendChild(deleteIcon);
+  
 }
+
+
 
 for (let todo of todoList) {
   createAndAppendTodo(todo);
