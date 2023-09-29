@@ -26,7 +26,11 @@ saveTodoButton.onclick = function() {
   },1000)
 
 };
-
+userInputElement.addEventListener("keydown",(event)=>{
+    if(event.key === "Enter"){
+      onAddTodo()
+    }
+})
 function onAddTodo() {
   editIndicator.classList.add("d-none");
   
@@ -157,8 +161,6 @@ function createAndAppendTodo(todo) {
   deleteIconContainer.appendChild(deleteIcon);
   
 }
-
-
 
 for (let todo of todoList) {
   createAndAppendTodo(todo);
